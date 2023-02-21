@@ -1,0 +1,50 @@
+﻿@using MvcCoreSession.Helper;
+@{
+    List<Persona> personas = Context.Session.GetObject<List<Persona>>("LISTAPERSONAS");
+}
+
+@if (Context.Session.GetString("USERNAME")!=null){
+    <h1 style="color:red">
+        Bienvenido a mi App, @Context.Session.GetString("USERNAME")
+    </h1>
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h2 style="color:red">
+    Numero actual: @Context.Session.GetString("NUMERO")
+</h2>
+
+<h2 style="color:blue">
+    Usuario actual: @Context.Session.GetString("USUARIO")
+</h2>
+
+<h2 style="color:fuchsia">
+    Hora session: @Context.Session.GetString("HORA")
+</h2>
+@if (personas != null)
+{
+    <table class="table-info">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        @foreach (Persona p in personas)
+        {
+            <tr>
+                <td>@p.Nombre</td>
+                <td>@p.Email</td>
+                <td>@p.Edad</td>
+            </tr>
+        }
+    </table>
+}
+else{
+    <h1 style="color:red">
+        No hay personas en Session
+    </h1>
+}

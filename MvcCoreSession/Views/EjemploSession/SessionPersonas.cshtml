@@ -1,0 +1,44 @@
+﻿@using MvcCoreSession.Helper;
+@{
+    Persona persona = Context.Session.GetObject<Persona>("PERSONA");
+}
+
+
+
+@if (Context.Session.GetString("USERNAME")!=null){
+    <h1 style="color:red">
+        Bienvenido a mi App, @Context.Session.GetString("USERNAME")
+    </h1>
+}
+<h1>Personas en Session</h1>
+
+@if (persona != null)
+{
+    <ul class="list-group">
+        <li class="list-group-item">
+            Nombre: @persona.Nombre
+        </li>
+        <li class="list-group-item">
+            Email: @persona.Email
+        </li>
+        <li class="list-group-item">
+            Edad: @persona.Edad
+        </li>
+    </ul>
+}
+<form method="post">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" class="form-control" />
+    <label>Email:</label>
+    <input type="text" name="email" class="form-control" />
+    <label>Edad:</label>
+    <input type="number" name="edad" class="form-control" />
+    <button class="btn btn-outline-success">
+        Almacenar personas Session
+    </button>
+</form>
+
+
+<h2 style="color:red">
+    @ViewData["MENSAJE"]
+</h2>

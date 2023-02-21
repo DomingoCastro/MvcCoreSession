@@ -1,0 +1,32 @@
+﻿<h1>Ejemplo Simple Session</h1>
+@if (Context.Session.GetString("USERNAME") != null)
+{
+    <h1 style="color:red">
+        Bienvenido a mi App, @Context.Session.GetString("USERNAME")
+    </h1>
+}
+<form method="post">
+    <label>Nombre de usuario</label>
+    <input type="text" name="usuario" class="form-control" />
+    <button class="btn btn-info" name="accion" value="almacenar">
+        Guardar datos Session
+    </button>
+    <button class="btn btn-success" name="accion" value="mostrar">
+        Mostrar datos session
+    </button>
+</form>
+
+<h2 style="color:red">
+    Numero actual: @ViewData["NUMERO"]
+</h2>
+
+<h2 style="color:blue">
+    Usuario actual: @ViewData["USUARIO"]
+</h2>
+
+<h2 style="color:fuchsia">
+    Hora session: @ViewData["HORA"]
+</h2>
+<h3 style="color:green">
+    @ViewData["MENSAJE"]
+</h3>

@@ -1,0 +1,24 @@
+﻿@using MvcCoreSession.Helper;
+@{
+    List<Persona> personas = Context.Session.GetObject<List<Persona>>("LISTAPERSONAS");
+    int numeropersonas = 0;
+    if(personas != null)
+    {
+        numeropersonas = personas.Count;
+    }
+}
+
+@if (Context.Session.GetString("USERNAME") == null){
+    <a asp-controller="EjemploSession" asp-action="Login" class="nav-link text-black">Login</a>
+}
+else{
+    <div class="dropdown">
+        <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bienvenido, @Context.Session.GetString("USERNAME"),
+            Numero de personas en carrito: @numeropersonas
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a asp-controller="EjemploSession" asp-action="Logout" class="dropdown-item text-danger">Logout</a></li>
+        </ul>
+    </div>
+}
